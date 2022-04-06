@@ -29,6 +29,11 @@ class AuthController extends Controller
             'token' => $token
         ];
 
+        return response([
+            'user' => $user,
+            'token' => $token
+        ]);
+
         return response($response, 201);
     }
 
@@ -64,5 +69,13 @@ class AuthController extends Controller
         return [
             'message' => 'Logged out'
         ];
+    }
+
+
+    public function updateUser(Request $request, $id)
+    {
+        $userData = User::find($id);
+        $userData->update($request->all());
+        return $userData;
     }
 }

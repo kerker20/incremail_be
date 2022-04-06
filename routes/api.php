@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,16 +23,25 @@ use Illuminate\Support\Facades\Route;
 // Public routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{id}', [ProductController::class, 'show']);
-Route::get('/products/search/{name}', [ProductController::class, 'search']);
+Route::get('/email', [TemplateController::class, 'index']);
+Route::post('/forgot', [ForgotPasswordController::class, 'forgot']);
+Route::post('/reset', [ForgotPasswordController::class, 'reset']);
+Route::get('/template/{id}', [TemplateController::class, 'show']);
+Route::get('/templateEmail/{id}', [TemplateController::class, 'showTemplate']);
+Route::get('/templateImage/{id}', [UploadController::class, 'showImage']);
+Route::post('/image-upload', [UploadController::class, 'upload']);
+Route::get('/getImage/{filename}', [UploadController::class, 'displayImage']);
+Route::get('/showImage/{id}', [UploadController::class, 'showAllImage']);
+// Route::get('/getTemplate/{id}', [TemplateController::class, 'getTemplate']);
+// Route::get('/products/search/{name}', [ProductController::class, 'search']);
 
 
 // Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/products', [ProductController::class, 'store']);
-    Route::put('/products/{id}', [ProductController::class, 'update']);
-    Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+    Route::post('/createEmail', [TemplateController::class, 'store']);
+    Route::put('/templateUpdate/{id}', [TemplateController::class, 'update']);
+    Route::delete('/templateDel/{id}', [TemplateController::class, 'destroy']);
+    Route::post('/userUpdate/{id}', [AuthController::class, 'updateUser']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
