@@ -34,6 +34,7 @@ Route::post('/image-upload', [UploadController::class, 'upload']);
 Route::get('/getImage/{filename}', [UploadController::class, 'displayImage']);
 Route::get('/showImage/{id}', [UploadController::class, 'showAllImage']);
 Route::put('/updateFavorite/{id}',[TemplateController::class, 'updateFavorites']);
+Route::put('/removeFavorite/{id}',[TemplateController::class, 'removeFavorites']);
 // Route::get('/getTemplate/{id}', [TemplateController::class, 'getTemplate']);
 // Route::get('/products/search/{name}', [ProductController::class, 'search']);
 
