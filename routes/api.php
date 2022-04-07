@@ -27,11 +27,13 @@ Route::get('/email', [TemplateController::class, 'index']);
 Route::post('/forgot', [ForgotPasswordController::class, 'forgot']);
 Route::post('/reset', [ForgotPasswordController::class, 'reset']);
 Route::get('/template/{id}', [TemplateController::class, 'show']);
+Route::get('/favoriteTemplate/{id}', [TemplateController::class, 'showFavorite']);
 Route::get('/templateEmail/{id}', [TemplateController::class, 'showTemplate']);
 Route::get('/templateImage/{id}', [UploadController::class, 'showImage']);
 Route::post('/image-upload', [UploadController::class, 'upload']);
 Route::get('/getImage/{filename}', [UploadController::class, 'displayImage']);
 Route::get('/showImage/{id}', [UploadController::class, 'showAllImage']);
+Route::put('/updateFavorite/{id}',[TemplateController::class, 'updateFavorites']);
 // Route::get('/getTemplate/{id}', [TemplateController::class, 'getTemplate']);
 // Route::get('/products/search/{name}', [ProductController::class, 'search']);
 

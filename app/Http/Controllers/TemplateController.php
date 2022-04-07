@@ -36,7 +36,12 @@ class TemplateController extends Controller
      */
     public function show($id)
     {
-        return EmailTemplates::all()->where('user_id', $id);
+        return EmailTemplates::all()->where('user_id', $id )->where('favorite', '0');
+    }
+
+    public function showFavorite($id)
+    {
+        return EmailTemplates::all()->where('user_id', $id)->where('favorite', '1');
     }
 
     // public function showTemplate($id)
@@ -70,6 +75,13 @@ class TemplateController extends Controller
     {
         $email = EmailTemplates::find($id);
         $email->update($request->all());
+        return $email;
+    }
+
+    public function updateFavorites($id)
+    {
+        $email = EmailTemplates::find($id);
+        $email->update(['favorite' =>1]);
         return $email;
     }
 
