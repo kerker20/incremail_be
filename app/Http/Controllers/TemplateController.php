@@ -46,7 +46,7 @@ class TemplateController extends Controller
 
     public function removeFavorite($id)
     {
-        return EmailTemplates::all()-> where('user_id', id)-> where('favorite','0');
+        return EmailTemplates::all()-> where('user_id', $id)-> where('favorite','0');
     }
 
     // public function showTemplate($id)
