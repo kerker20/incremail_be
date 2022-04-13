@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\UploadController;
 
@@ -35,6 +36,7 @@ Route::get('/getImage/{filename}', [UploadController::class, 'displayImage']);
 Route::get('/showImage/{id}', [UploadController::class, 'showAllImage']);
 Route::put('/updateFavorite/{id}',[TemplateController::class, 'updateFavorites']);
 Route::put('/removeFavorite/{id}',[TemplateController::class, 'removeFavorites']);
+Route::post('/sendMail',[MailController::class, 'sendMail']);
 // Route::get('/getTemplate/{id}', [TemplateController::class, 'getTemplate']);
 // Route::get('/products/search/{name}', [ProductController::class, 'search']);
 
