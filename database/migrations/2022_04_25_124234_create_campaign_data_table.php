@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmailTemplatesTable extends Migration
+class CreateCampaignDataTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateEmailTemplatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('email_templates', function (Blueprint $table) {
+        Schema::create('campaign_data', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->longText('html');
-            $table->longText('title');
-            $table->integer('favorite');
             $table->longText('design_html');
+            $table->text('sender');
+            $table->text('subject');
             $table->timestamps();
         });
 
-        Schema::table('email_templates', function($table) {
+        Schema::table('campaign_data', function($table) {
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
@@ -38,6 +38,6 @@ class CreateEmailTemplatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('email_templates');
+        Schema::dropIfExists('campaign_data');
     }
 }

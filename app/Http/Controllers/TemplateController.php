@@ -48,6 +48,10 @@ class TemplateController extends Controller
     {
         return EmailTemplates::all()-> where('user_id', $id)-> where('favorite','0');
     }
+    public function showAll($id)
+    {
+        return EmailTemplates::all()->where('user_id', $id );
+    }
 
     // public function showTemplate($id)
     // {
@@ -96,6 +100,7 @@ class TemplateController extends Controller
         $email->update(['favorite' =>0]);
         return $email;
     }
+    
 
     /**
      * Remove the specified resource from storage.

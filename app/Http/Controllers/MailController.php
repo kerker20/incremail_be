@@ -16,19 +16,25 @@ class MailController extends Controller
             'subject' => $request->subject,
             'fromName' => $request->fromName,
         ];
-        // $to = $request->input('recipient');
-        // $template = $request->input('html');
+        
 
-        Mail::send([], $mail_data, function (Message $message) use ($mail_data) {
-            $message->to($mail_data['recipient'])
+        $cc = explode(',',$mail_data['recipient']);
+
+        
+
+        Mail::send([], $mail_data, function (Message $message) use ($mail_data, $cc) {
+            $message->to($cc)
         ->subject($mail_data['subject'])
         ->from('renalybengil@gmail.com', $mail_data['fromName'])
         ->setBody($mail_data['template'], 'text/html');
-});
+
+        
+        });
 
         return response([
             'to' => $mail_data['fromName'],
             'message' => 'Successfully sent!',
+            'data' => $cc
         ]);
     }
 }
